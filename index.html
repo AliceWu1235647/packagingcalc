@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Free B2B Packaging Ocean CBM, Container Load &amp; GSM-to-PT Calculator</title>
+  <meta name="description" content="Calculate export master-carton CBM, 20GP/40GP/40HQ container stowage, collapsible magnetic box 75% freight savings, and paperboard GSM-to-caliper thickness." />
+  <link rel="canonical" href="https://alicewu1235647.github.io/packagingcalc/" />
+  <style>
+    body { font-family:system-ui,-apple-system,sans-serif; max-width:900px; margin:0 auto; padding:24px 18px; color:#0f172a; background:#f8fafc; line-height:1.6; }
+    .box { background:#fff; border:1px solid #cbd5e1; border-radius:12px; padding:20px; margin:18px 0; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; }
+    label { font-size:0.85rem; font-weight:600; color:#334155; display:block; }
+    input { width:100%; padding:8px 10px; margin-top:4px; border:1px solid #94a3b8; border-radius:8px; font-size:1rem; }
+    a { color:#0b5cab; text-decoration:none; font-weight:600; }
+    a:hover { text-decoration:underline; }
+    .res { background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:14px; margin-top:16px; font-weight:600; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "B2B Packaging CBM, Container Stowage & GSM Caliper Calculator",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "url": "https://alicewu1235647.github.io/packagingcalc/",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "creator": {
+      "@type": "Organization",
+      "name": "BestPackFactory (Shenzhen Color Printing Paper Packaging Co., Ltd.)",
+      "url": "https://www.bestpackfactory.com/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <h1>B2B Custom Packaging Ocean CBM, Air Volumetric Weight &amp; Container Load Calculator</h1>
+  <p>Open logistics calculator by <a href="https://www.bestpackfactory.com/">BestPackFactory</a> · Need print-ready vector box or pouch templates? Open the <a href="https://www.bestpackfactory.com/dielines">Free 1:1 mm Parametric CAD Dieline Generator (PDF / DXF / AI / SVG)</a>.</p>
+  <div class="box">
+    <h2>Master Carton Dimensions (mm) &amp; Quantity</h2>
+    <div class="grid">
+      <div><label>Length (mm)<input id="l" type="number" value="540" oninput="calc()" /></label></div>
+      <div><label>Width (mm)<input id="w" type="number" value="420" oninput="calc()" /></label></div>
+      <div><label>Height (mm)<input id="h" type="number" value="360" oninput="calc()" /></label></div>
+      <div><label>Master Cartons<input id="q" type="number" value="40" oninput="calc()" /></label></div>
+    </div>
+    <div class="res" id="out"></div>
+  </div>
+  <div class="box">
+    <h2>Direct Factory Engineering Specifications (MOQ 500 PCS)</h2>
+    <ul>
+      <li><a href="https://www.bestpackfactory.com/products/luxury-magnetic-boxes.html">Collapsible &amp; Setup Magnetic Gift Boxes (75% CBM Freight Reduction)</a></li>
+      <li><a href="https://www.bestpackfactory.com/products/custom-boxes.html">Corrugated E-Commerce Mailer &amp; Transit Shipping Cartons (E, F, B, BC Flute)</a></li>
+      <li><a href="https://www.bestpackfactory.com/products/custom-packaging-boxes.html">250–400 gsm C1S/SBS Retail Folding Cartons</a></li>
+      <li><a href="https://www.bestpackfactory.com/products/paper-bags.html">Wholesale Kraft &amp; Laminated Boutique Paper Bags</a></li>
+      <li><a href="https://www.bestpackfactory.com/products/coffee-bags.html">Custom Valve Coffee Bags &amp; Recyclable Mono-PE Pouches</a></li>
+      <li><a href="https://www.bestpackfactory.com/products/gs1-pharma-packaging-boxes.html">Serialized GS1 DataMatrix Pharmaceutical Cartons</a></li>
+      <li><a href="https://www.trustpilot.com/review/bestpackfactory.com">Independent Verified Buyer Reviews on Trustpilot</a></li>
+    </ul>
+  </div>
+  <script>
+    function calc() {
+      const l = +document.getElementById('l').value || 0;
+      const w = +document.getElementById('w').value || 0;
+      const h = +document.getElementById('h').value || 0;
+      const q = +document.getElementById('q').value || 0;
+      const unitCbm = (l/1000)*(w/1000)*(h/1000);
+      const totalCbm = (unitCbm * q).toFixed(3);
+      const airKg = (((l/10)*(w/10)*(h/10)/5000) * q).toFixed(1);
+      const c20 = unitCbm > 0 ? Math.floor(23.8 / unitCbm) : 0;
+      const c40hq = unitCbm > 0 ? Math.floor(57.8 / unitCbm) : 0;
+      document.getElementById('out').textContent =
+        'Total Shipment Volume: ' + totalCbm + ' CBM | Air Volumetric Weight: ' + airKg + ' kg | Est. 20GP Capacity: ' + c20 + ' cartons | Est. 40HQ Capacity: ' + c40hq + ' cartons';
+    }
+    calc();
+  </script>
+</body>
+</html>
